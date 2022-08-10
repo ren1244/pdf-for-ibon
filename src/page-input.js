@@ -1,4 +1,4 @@
-import { PDFDocument } from '../node_modules/pdf-lib/dist/pdf-lib.esm.js';
+import { PDFDocument } from 'pdf-lib';
 
 class PageInput {
     constructor() {

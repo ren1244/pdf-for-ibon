@@ -1,4 +1,4 @@
-import { PDFDocument } from '../node_modules/pdf-lib/dist/pdf-lib.esm.js';
+import { PDFDocument } from 'pdf-lib';
 import pageLayout from './page-layout.js';
 import { convertLayout } from './lib.js';
 import { FileUploader } from './file-uploader.esm.js';
