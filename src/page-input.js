@@ -79,7 +79,7 @@ class PageInput {
     getDocAndPages() {
         let result = [];
         for (let i = 0; i < this.docs.length; ++i) {
-            result.push({ doc: this.docs[i], pagesArr:[], bboxArr: [], mtxArr: [], targetPageArr: [] });
+            result.push({ doc: this.docs[i], pagesArr: [], bboxArr: [], mtxArr: [], targetPageArr: [] });
         }
         for (let i = 0; i < this.pages.length; ++i) {
             let page = this.pages[i];
@@ -87,11 +87,6 @@ class PageInput {
                 continue;
             }
             let docId = page.docId;
-            // result[docId].pagesArr[page.pageId]=result[docId].doc.getPage(page.pageId);
-            // result[docId].bboxArr[page.pageId]=page.bbox;
-            // result[docId].mtxArr[page.pageId]=page.mtx;
-            // result[docId].targetPageArr[page.pageId]=page.targetPage;
-
             result[docId].pagesArr.push(result[docId].doc.getPage(page.pageId));
             result[docId].bboxArr.push(page.bbox);
             result[docId].mtxArr.push(page.mtx);
@@ -108,6 +103,11 @@ class PageInput {
      */
     _loadPageSelect(selectStr, docPageCounts) {
         selectStr = selectStr.toLowerCase().replaceAll(/\s/g, '');
+        if (selectStr === '') {
+            selectStr = docPageCounts.map((x, i)=>{
+                return `${String.fromCodePoint(97+i)}1-${x}`;
+            }).join(',');
+        }
         const arr = selectStr.split(',').map(x => x.split('-'));
         let docId = 0;
         let pages = [];
