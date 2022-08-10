@@ -1,11 +1,13 @@
-import * as onePage from './config/onePage.js';
-import * as twoPage from './config/twoPage.js';
-import * as twoPageA3 from './config/twoPageA3.js';
+import * as a4TwoLong from './config/a4-two-long.js';
+import * as a4TwoShort from './config/a4-two-short.js';
+import * as a3TwoLong from './config/a3-two-long.js';
+import * as a3TwoShort from './config/a3-two-short.js';
 
 const pageLayout = {
-    "A4OnePage7-11": onePage,
-    "A4TwoPageLong7-11": twoPage,
-    "A3TwoPageLong7-11": twoPageA3
+    "a4-two-long": a4TwoLong,
+    "a4-two-short": a4TwoShort,
+    "a3-two-long": a3TwoLong,
+    "a3-two-short": a3TwoShort
 }
 
 export default pageLayout;

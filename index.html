@@ -26,8 +26,6 @@
             height: 100%;
         }
         .col-1 {
-            flex-basis: 1px;
-            flex-grow: 1;
             overflow: auto;
         }
         .col-2 {
@@ -41,36 +39,31 @@
             <h3>上傳檔案</h3>
             <p>※ 原始檔案應為 A4 直式紙張</p>
             <div id="file-loader"></div>
-            <div id="mode-selector">
-                <h3>版面設定</h3>
-                <label for="paper">紙張尺寸</label>
-                <select id="paper">
-                    <option value="A4">A4</option>
-                    <option value="A3">A3</option>
-                </select>
+            <div>
+                <label for="input-page">頁面選擇</label>
+                <input type="text" id="input-page">
                 <div>
-                    <label for="combine">每面輸出</label>
-                    <select id="combine">
-                        <option value="1">1 頁</option>
-                        <option value="2">2 頁</option>
-                        <option value="3">2 頁 - 騎馬釘</option>
+                    <select id="paper">
+                        <option value="a4">A4</option>
+                        <option value="a3">A3</option>
                     </select>
-                </div>
-                <div>
-                    <label for="face">列印方式</label>
-                    <select id="face">
-                        <option value="1">單面列印</option>
-                        <option value="2">雙面列印 - 長邊翻頁</option>
-                        <option value="3">雙面列印 - 短邊翻頁</option>
+                    <select id="flip">
+                        <option value="left">左翻</option>
+                        <option value="right">右翻</option>
                     </select>
+                    <select id="edge">
+                        <option value="long">長邊翻轉</option>
+                        <option value="short">短邊翻轉</option>
+                    </select>
+                    <button id="output-btn">輸出</button>
                 </div>
             </div>
+            <div id="file-list"></div>
         </div>
         <div class="col-2">
             <iframe></iframe>
         </div>
     </div>
-    <script src="src/file-uploader.js"></script>
     <script src="src/main.js" type="module"></script>
 </body>
 </html>
