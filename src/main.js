@@ -100,10 +100,34 @@ document.querySelector('#output-btn').addEventListener('click', () => {
         const flipDirection = document.querySelector('#flip').value;
         const edgeBinding = document.querySelector('#edge').value;
         const paper = document.querySelector('#paper').value;
-        pageManger.convetForSaddle(flipDirection, edgeBinding);
-        const bytes = await updatePdf(pageManger, pageLayout[`${paper}-two-${edgeBinding}`]);
+        if(flipDirection === 'left' || flipDirection ==='right') {
+            pageManger.convetForSaddle(flipDirection, edgeBinding);
+        }
+        let layoutKey;
+        if(flipDirection ==='single') {
+            layoutKey = `${paper}-single`;
+        } else if(flipDirection ==='double') {
+            layoutKey = `${paper}-double-${edgeBinding}`;
+        } else {
+            layoutKey = `${paper}-two-${edgeBinding}`;
+        }
+        const bytes = await updatePdf(pageManger, pageLayout[layoutKey]);
         document.querySelector('iframe').src = URL.createObjectURL(
             new Blob([bytes], { type: 'application/pdf' })
         );
     })();
 });
+
+function flipUpdate() {
+    const flip = document.querySelector('#flip').value;
+    const edge = document.querySelector('#edge');
+    if(flip==='single') {
+        edge.classList.toggle('hide', true);
+    } else {
+        edge.classList.toggle('hide', false);
+    }
+}
+
+document.querySelector('#flip').addEventListener('change', flipUpdate);
+
+flipUpdate();
