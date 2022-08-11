@@ -2,4 +2,3 @@ data/*
 node_modules
 *.pdf
 package-lock.json
-bundle.js
