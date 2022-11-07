@@ -1,7 +1,7 @@
 import { PDFDocument, rgb } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
-import {fileURLToPath} from 'url';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -55,11 +55,23 @@ async function createPdf(nPages) {
                 });
             }
         }
+
+        //頁碼文字
+        const fontSize = 32;
+        [{ x: 0.5, y: 0.5 }, { x: 1.5, y: 0.5 }, { x: 0.5, y: 1.5 }, { x: 1.5, y: 1.5 }].forEach(p => {
+            const str = `page ${k}`;
+            page.drawText(str, {
+                size: fontSize,
+                x: cx * p.x - fontSize * str.length / 4,
+                y: cy * p.y,
+                color: rgb(0, 0, 0)
+            });
+        });
         page.moveTo(0, 0);
         page.drawSvgPath(svgPath.join(' '), { borderColor: pageColor, borderWidth: 0.25 });
     }
     const pdfBytes = await pdfDoc.save();
-    
+
     fs.writeFileSync(
         path.resolve(__dirname, `../data/ruler-${nPages}.pdf`),
         pdfBytes,
@@ -76,3 +88,7 @@ createPdf(6);
 createPdf(7);
 createPdf(8);
 createPdf(9);
+
+createPdf(46);
+createPdf(48);
+createPdf(41);

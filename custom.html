@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自訂排版(印前處理)</title>
+</head>
+<body>
+    <style>
+        html, body {
+            height: 100%;
+        }
+        html, body, iframe, div{
+            margin: 0px;
+            padding: 0px;
+        }
+        iframe {
+            display: block;
+            border: none;
+            height: 100%;
+            width: 100%;
+        }
+        .row{
+            display: flex;
+            height: 100%;
+        }
+        .col-1 {
+            overflow: auto;
+        }
+        .col-2 {
+            flex-basis: 1px;
+            flex-grow: 2;
+            overflow: auto;
+        }
+        .hide{
+            display: none;
+        }
+        input[type="number"] {
+            width: 4em;
+        }
+    </style>
+    <div class="row">
+        <div class="col-1">
+            <p>以下單位都是 mm</p>
+            <h4>頁面</h4>
+            <p>寬 <input type="number" id="paper-width" value="210">
+                高 <input type="number" id="paper-height" value="297">
+                內距 <input type="number" id="paper-padding" value="4">
+            </p>
+            <h4>分割</h4>
+            <p>（使用Z形排列）</p>
+            <p><input type="number" id="grid-row" value="2"> 列
+                <input type="number" id="grid-col" value="1"> 欄
+            </p>
+            <p>
+                方向 <select id="direction">
+                    <option value="hlr">HLR</option>
+                    <option value="hrl">HRL</option>
+                    <option value="vlr">VLR</option>
+                    <option value="vrl">VRL</option>
+                </select>
+                間距 <input type="number" id="grid-gap" value="4">
+            </p>
+            <h4>其他</h4>
+            <p>
+                <select id="flip">
+                    <option value="single">單面</option>
+                    <option value="double">雙面</option>
+                    <option value="left">小冊子左翻</option>
+                    <option value="right">小冊子右翻</option>
+                </select>
+                <select id="edge">
+                    <option value="long">長邊翻轉</option>
+                    <option value="short">短邊翻轉</option>
+                </select>
+
+                
+                
+            </p>
+            <p>補空白 <input type="number" id="space" value="0"> 頁</p>
+            <p>最後裁切 <input type="number" id="clip" value="0"> mm</p>
+            <h3>上傳檔案</h3>
+            <div id="file-loader"></div>
+        </div>
+        <div class="col-2">
+            <iframe></iframe>
+        </div>
+    </div>
+    <script src="src/main-custom.js" type="module"></script>
+</body>
+</html>
